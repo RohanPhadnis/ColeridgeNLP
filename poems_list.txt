@@ -1,0 +1,36 @@
+These are all poems by Samuel Taylor Coleridge used in the corpus for training the text generator.
+The text is extracted from the Poetry Foundation.
+
+Christabel
+Constancy to an Ideal Object
+Dejection: An Ode
+Desire
+The Eolian Harp
+Epitaph
+Fragment 1: Sea-ward, white gleaming thro' the busy scud
+Fragment 2: I know 'tis but a Dream, yet feel more anguish
+Fragment 3: Come, come thou bleak December wind
+Fragment 4: As some vast Tropic tree, itself a wood
+Fragment 5: Whom should I choose for my Judge?
+Fragment 6: The Moon, how definite its orb!
+Fragment 7: When Hope but made Tranquillity be felt
+Fragment 9: The Netherlands
+Fragment 10: The Three Sorts of Friends
+France: An Ode
+Frost at Midnight
+The Good, Great Man
+Hymn before Sun-rise, in the Vale of Chamouni
+Inscription for a Fountain on a Heath
+The Knight's Tomb
+Kubla Khan
+Love
+Love's Apparition and Evanishment: An Allegoric Romance
+On Donne's Poetry
+The Pain's of Sleep
+The Rime of the Ancient Mariner
+Something Childish, but Very Natural
+Sonnet: On Receiving a Letter Informing Me of the Birth of a Son
+This Lime-tree Bower my Prison
+To Asra
+Work without Hope
+Youth and Age
