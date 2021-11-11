@@ -17,7 +17,7 @@ RATIO = 0.75
 VOCAB_SIZE = 5000
 encoder = json.JSONEncoder()
 
-with open('rime.txt') as file:
+with open('../data/rime.txt') as file:
     text = file.read()
 
 sentences = text.split('\n')
@@ -25,7 +25,14 @@ tokenizer = keras.preprocessing.text.Tokenizer(num_words=VOCAB_SIZE, oov_token='
 tokenizer.fit_on_texts(sentences)
 sequences = tokenizer.texts_to_sequences(sentences)
 xs, ys = [], []
-for s in sequences:
+for j in range(len(sequences)):
+    s = []
+    if j + 4 < len(sequences):
+        for h in range(4):
+            s += sequences[j + h]
+    else:
+        for h in range(len(sequences) - j):
+            s += sequences[j + h]
     if len(s) > 0:
         for i in range(1, len(s)):
             xs.append(s[:i])
@@ -71,6 +78,6 @@ model.fit(x=train_xs,
           verbose=1)
 
 model.save('model{}.h5'.format(time.time()))
-with open('meta.json', 'w') as file:
+with open('../model/meta.json', 'w') as file:
     file.write(encoder.encode({'word_index': tokenizer.word_index, 'input_len': INPUT_LEN}))
     file.close()
