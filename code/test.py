@@ -1,8 +1,11 @@
+import os
 import json
 import numpy
 from tensorflow import keras
 
-DIR = '../models/model'     # todo fill
+folder = sorted(os.listdir('../models'))
+DIR = '../models/{}'.format(folder[-1])
+print(DIR)
 decoder = json.JSONDecoder()
 with open('{}/meta_data.json'.format(DIR)) as file:
     meta_data = decoder.decode(file.read())
