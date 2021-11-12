@@ -30,8 +30,8 @@ text = [reversed_word_index[n] for n in seq]
 print(text)
 open('{}/meta.tsv'.format(DIR), 'x')
 open('{}/vecs.tsv'.format(DIR), 'x')
-meta = open('../models/initial/meta.tsv', 'a')
-vecs = open('../models/initial/vecs.tsv', 'a')
+meta = open('{}/meta.tsv'.format(DIR), 'a')
+vecs = open('{}/vecs.tsv'.format(DIR), 'a')
 for i in range(5000):
     if i in reversed_word_index.keys():
         meta.write(reversed_word_index[i] + '\n')
