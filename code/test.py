@@ -2,10 +2,11 @@ import json
 import numpy
 from tensorflow import keras
 
+DIR = '../models/model'     # todo fill
 decoder = json.JSONDecoder()
-with open('../model/meta.json') as file:
+with open('{}/meta_data.json'.format(DIR)) as file:
     meta_data = decoder.decode(file.read())
-model = keras.models.load_model('../model/model1636597371.8986976.h5')
+model = keras.models.load_model('{}/model.h5'.format(DIR))
 text = 'it is an'
 text = keras.preprocessing.text.text_to_word_sequence(text)
 seq = []
@@ -24,14 +25,10 @@ for i in range(meta_data['input_len'] - len(text)):
     seq.pop(0)
 text = [reversed_word_index[n] for n in seq]
 print(text)
-meta = open('../model/meta.tsv', 'w')
-meta.write('')
-meta.close()
-vecs = open('../model/vecs.tsv', 'w')
-vecs.write('')
-vecs.close()
-meta = open('../model/meta.tsv', 'a')
-vecs = open('../model/vecs.tsv', 'a')
+open('{}/meta.tsv'.format(DIR), 'x')
+open('{}/vecs.tsv'.format(DIR), 'x')
+meta = open('../models/initial/meta.tsv', 'a')
+vecs = open('../models/initial/vecs.tsv', 'a')
 for i in range(5000):
     if i in reversed_word_index.keys():
         meta.write(reversed_word_index[i] + '\n')

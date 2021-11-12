@@ -7,6 +7,7 @@ English
 Literature
 '''
 
+import os
 import time
 import random
 import json
@@ -15,12 +16,16 @@ from tensorflow import keras
 
 RATIO = 0.75
 VOCAB_SIZE = 5000
+TIME = time.time()
+DIR = '../models/model{}'.format(TIME)
+os.mkdir(DIR)
 encoder = json.JSONEncoder()
 
 with open('../data/rime.txt') as file:
     text = file.read()
 
 sentences = text.split('\n')
+sentences = [s for s in sentences if len(s) > 0]
 tokenizer = keras.preprocessing.text.Tokenizer(num_words=VOCAB_SIZE, oov_token='<OOV>')
 tokenizer.fit_on_texts(sentences)
 sequences = tokenizer.texts_to_sequences(sentences)
@@ -33,14 +38,13 @@ for j in range(len(sequences)):
     else:
         for h in range(len(sequences) - j):
             s += sequences[j + h]
-    if len(s) > 0:
-        for i in range(1, len(s)):
-            xs.append(s[:i])
-            ys.append(s[i])
-INPUT_LEN = max([len(s) for s in sequences])
+    for i in range(1, len(s)):
+        xs.append(s[:i])
+        ys.append(s[i])
+INPUT_LEN = max([len(s) for s in xs])
+print(INPUT_LEN)
 xs = keras.preprocessing.sequence.pad_sequences(xs, maxlen=INPUT_LEN)
 ys = keras.utils.to_categorical(ys, num_classes=VOCAB_SIZE)
-print(ys)
 master = [[xs[i], ys[i]] for i in range(len(xs))]
 random.shuffle(master)
 train, val = master[:int(len(master) * RATIO)], master[int(len(master) * RATIO):]
@@ -60,6 +64,7 @@ train_ys = numpy.array(train_ys)
 val_xs = numpy.array(val_xs)
 val_ys = numpy.array(val_ys)
 
+tb = keras.callbacks.TensorBoard(log_dir='{}/logs'.format(DIR))
 model = keras.models.Sequential([
     keras.layers.Embedding(input_dim=VOCAB_SIZE, input_length=INPUT_LEN, output_dim=16),
     keras.layers.Bidirectional(layer=keras.layers.LSTM(units=32, return_sequences=True)),
@@ -75,9 +80,11 @@ model.fit(x=train_xs,
           y=train_ys,
           epochs=400,
           validation_data=(val_xs, val_ys),
-          verbose=1)
+          verbose=1,
+          callbacks=[tb])
 
-model.save('model{}.h5'.format(time.time()))
-with open('../model/meta.json', 'w') as file:
+model.save('{}/model.h5'.format(DIR))
+open('{}/meta_data.json'.format(DIR), 'x')
+with open('{}/meta_data.json'.format(DIR), 'w') as file:
     file.write(encoder.encode({'word_index': tokenizer.word_index, 'input_len': INPUT_LEN}))
     file.close()
