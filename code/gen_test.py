@@ -4,14 +4,14 @@ import numpy
 from tensorflow import keras
 
 folder = os.listdir('../models')
-folder = sorted([f for f in folder if 'generator' in f])
+folder = sorted([f for f in folder if 'model' in f])
 DIR = '../models/{}'.format(folder[-1])
 print(DIR)
 decoder = json.JSONDecoder()
 with open('{}/meta_data.json'.format(DIR)) as file:
     meta_data = decoder.decode(file.read())
 model = keras.models.load_model('{}/model.h5'.format(DIR))
-text = 'The man'
+text = 'The ship sailed through the sea'
 text = keras.preprocessing.text.text_to_word_sequence(text)
 seq = []
 for i in range(len(text)):
