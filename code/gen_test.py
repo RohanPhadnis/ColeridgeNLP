@@ -3,14 +3,15 @@ import json
 import numpy
 from tensorflow import keras
 
-folder = sorted(os.listdir('../models'))
+folder = os.listdir('../models')
+folder = sorted([f for f in folder if 'generator' in f])
 DIR = '../models/{}'.format(folder[-1])
 print(DIR)
 decoder = json.JSONDecoder()
 with open('{}/meta_data.json'.format(DIR)) as file:
     meta_data = decoder.decode(file.read())
 model = keras.models.load_model('{}/model.h5'.format(DIR))
-text = 'it is an'
+text = 'The man'
 text = keras.preprocessing.text.text_to_word_sequence(text)
 seq = []
 for i in range(len(text)):
@@ -32,7 +33,7 @@ open('{}/meta.tsv'.format(DIR), 'x')
 open('{}/vecs.tsv'.format(DIR), 'x')
 meta = open('{}/meta.tsv'.format(DIR), 'a')
 vecs = open('{}/vecs.tsv'.format(DIR), 'a')
-for i in range(5000):
+for i in range(1, 20000):
     if i in reversed_word_index.keys():
         meta.write(reversed_word_index[i] + '\n')
         output = []

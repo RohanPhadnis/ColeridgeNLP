@@ -15,13 +15,13 @@ import numpy
 from tensorflow import keras
 
 RATIO = 0.75
-VOCAB_SIZE = 5000
+VOCAB_SIZE = 20000
 TIME = time.time()
-DIR = '../models/model{}'.format(TIME)
+DIR = '../models/generator{}'.format(TIME)
 os.mkdir(DIR)
 encoder = json.JSONEncoder()
 
-with open('../data/rime.txt') as file:
+with open('../data/corpus.txt') as file:
     text = file.read()
 
 sentences = text.split('\n')
@@ -67,8 +67,8 @@ val_ys = numpy.array(val_ys)
 tb = keras.callbacks.TensorBoard(log_dir='{}/logs'.format(DIR))
 model = keras.models.Sequential([
     keras.layers.Embedding(input_dim=VOCAB_SIZE, input_length=INPUT_LEN, output_dim=16),
-    keras.layers.Bidirectional(layer=keras.layers.LSTM(units=32, return_sequences=True)),
-    keras.layers.Bidirectional(layer=keras.layers.LSTM(units=16)),
+    keras.layers.Bidirectional(layer=keras.layers.LSTM(units=16, return_sequences=True)),
+    keras.layers.Bidirectional(layer=keras.layers.LSTM(units=32)),
     keras.layers.Dense(units=32, activation='relu'),
     keras.layers.Dense(units=16, activation='relu'),
     keras.layers.Dense(units=VOCAB_SIZE, activation='softmax')
