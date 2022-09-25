@@ -1,4 +1,5 @@
 <h1>S.A.M.U.E.L.</h1>
+<hr>
 <h3>Semantic</h3>
 <h3>Analysis</h3>
 <h3>Machine that</h3>
@@ -8,7 +9,7 @@
 
 <hr>
 
-<strong>Abstract: </strong><p>Uses Tensorflow and Keras to train text classification and text generation on poetry. Dataset is by English poet Samuel Tailor Coleridge. Text classifier identifies ket poetic symbolism used in the text. Text generator tries to emulate the writing style.</p>
+<strong>Abstract: </strong><p>Uses Tensorflow and Keras to train text classification and text generation on poetry. Dataset is by English poet <a href="https://en.wikipedia.org/wiki/Samuel_Taylor_Coleridge">Samuel Taylor Coleridge</a<. Text classifier identifies ket poetic symbolism used in the text. Text generator tries to emulate the writing style.</p>
 
 <hr>
 
