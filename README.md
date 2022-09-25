@@ -9,7 +9,7 @@
 
 <hr>
 
-<strong>Abstract: </strong><p>Uses Tensorflow and Keras to train text classification and text generation on poetry. Dataset is by English poet <a href="https://en.wikipedia.org/wiki/Samuel_Taylor_Coleridge">Samuel Taylor Coleridge</a<. Text classifier identifies ket poetic symbolism used in the text. Text generator tries to emulate the writing style.</p>
+<strong>Abstract: </strong><p>Uses Tensorflow and Keras to train text classification and text generation on poetry. Dataset is by English poet <a href="https://en.wikipedia.org/wiki/Samuel_Taylor_Coleridge">Samuel Taylor Coleridge</a>. Text classifier identifies ket poetic symbolism used in the text. Text generator tries to emulate the writing style.</p>
 
 <hr>
 
